@@ -1,0 +1,56 @@
+.auth__block{
+    position: absolute;
+    width: 1000px;
+    height: 495px;
+    left: 460px;
+    top: 292px;
+    
+    background: #FFB361;
+    border-radius: 26px;
+}
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.auth__title{
+  
+width: 222px;
+height: 42px;
+left: 849px;
+top: 369px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 36px;
+line-height: 42px;
+
+color: #222020;
+
+}
+
+.input__field>label{
+
+    margin-right: 10px;
+ 
+}
+.input__field>input{
+
+     width: 516px;
+     height: 43px;
+     margin-left:50px ;
+     
+     background: rgba(240, 234, 234, 0.48);
+     
+ 
+ }
+.input__field>label>input>{
+
+    width: 516px;
+    height: 43px;
+    margin-left:50px ;
+    
+    background: rgba(240, 234, 234, 0.48);
+    
+
+}

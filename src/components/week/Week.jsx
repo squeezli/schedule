@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export const ListWeek = () => {
+export const ListWeek = (week) => {
 
     return (
        
@@ -30,15 +30,7 @@ export const ListWeek = () => {
                             <td>{week.saturday.firstlesson}</td>
                             <td>{week.sunday.firstlesson}</td> */}
                         </tr>
-                        <tr>
-                            <td>{week.monday.secondlesson}</td>
-                            <td>{week.tuesday.secondlesson}</td>
-                            {/* <td>{week.wednesday.secondlesson}</td>
-                            <td>{week.thirday.secondlesson}</td>
-                            <td>{week.friday.secondlesson}</td>
-                            <td>{week.saturday.secondlesson}</td>
-                            <td>{week.sunday.secondlesson}</td> */}
-                        </tr>
+                       
     
             </tbody>
         </table>
