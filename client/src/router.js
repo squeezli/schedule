@@ -2,6 +2,7 @@ import React from "react"
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { AuthPage } from "./pages/UserPages/AuthPage"
 import { CreatePage } from "./pages/UserPages/CreatePage"
+import { CreateWeekPage } from "./pages/UserPages/CreateWeekPage"
 import { GroopPage } from "./pages/UserPages/GroopPage"
 import { MainPage } from "./pages/UserPages/MainPage"
 import { ViewPage } from "./pages/UserPages/ViewPage"
@@ -15,7 +16,8 @@ export const useRoutes = isAuthenticated => {
             <Routes>
                 <Route path="main/" element={<MainPage />} />
                 <Route path="create/" element={<CreatePage />} />
-                <Route path="groop/:id" element={<GroopPage />} />
+                <Route path="groop/:login" element={<GroopPage />} />
+                <Route path="groop/:login/new" element={<CreateWeekPage />} />
                 <Route path="view/" element={<ViewPage />} />
                 
                 <Route path="/*" element={<Navigate replace to="/main" />} />

@@ -30,7 +30,7 @@ router.post('/user/create/groop',
     require('../controllers/userLogick').createGroop)
 
 router.get('/user/groops',auth, require('../controllers/userLogick').listGroop)
-router.get('/user/groop/:id',auth, require('../controllers/userLogick').cardGroop)
+router.get('/user/groop/:login',auth, require('../controllers/userLogick').cardGroop)
 
 // Groop
 

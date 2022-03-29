@@ -36,7 +36,6 @@ export const CreatePage = () => {
     return (
 
         <div>
-            <h1>Hello Create</h1>
             <div className="groop">
 
                 <span className="main__title">Добавить группу</span>

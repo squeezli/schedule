@@ -1,4 +1,5 @@
 const Groop = require('../models/Groop')
+const Week = require('../models/Week')
 const { validationResult } = require('express-validator')
 const bcrypt = require('bcryptjs')
 
@@ -53,9 +54,10 @@ exports.listGroop = async (req, res) => {
 }
 exports.cardGroop = async (req, res) => {
     try {
-       
-        const groop = await Groop.findOne({login:req.params.id})
-        console.log('gr',groop)
+        console.log("req0", req.params)
+        const groop = await Groop.findOne({login:req.params.login})
+        const week = await Week.findOne({_id:groop._id})
+        console.log('gr',week)
         res.json(groop)
     } catch (e) {
         

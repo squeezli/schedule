@@ -25,6 +25,4 @@ async function start(){
     }
 }
 
-eee
-
 start()

@@ -23,7 +23,6 @@ function App() {
       token, login, logout, userId, isAuthenticated
     }}>
       <Router>
-        gdfsgdf
         {isAuthenticated && <Navbar />}
         {!isAuthenticated && <NavbarNoAuth />}
         <div className='container'>

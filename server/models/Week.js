@@ -2,7 +2,7 @@ const { Schema, model, Types } = require('mongoose')
 
 const schema = new Schema({
     idUser: { type: Types.ObjectId, ref: "User" },
-    idgroops: { type: Types.ObjectId, ref: "Groop" },
+    idgroops: { type: Types.ObjectId , ref: "Groop" },
     monday: [{
         firstLesson: String,
         secondLesson: String,
