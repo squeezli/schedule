@@ -1,0 +1,6 @@
+{
+    "port":5000,
+    "mongoUrl":"mongodb://localhost/sad",
+    "secretKey":"ajsxNods",
+    "baseUrl":"http://localhost:5000"
+}
