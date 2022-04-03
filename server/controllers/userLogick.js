@@ -56,9 +56,9 @@ exports.cardGroop = async (req, res) => {
     try {
         console.log("req0", req.params)
         const groop = await Groop.findOne({login:req.params.login})
-        const week = await Week.findOne({_id:groop._id})
+        const week = await Week.findOne({idGroops:groop._id})
         console.log('gr',week)
-        res.json(groop)
+        res.json({groop,week})
     } catch (e) {
         
         res.status(500).json({ message: ' попробуйте снова' })

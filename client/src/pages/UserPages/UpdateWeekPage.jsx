@@ -5,7 +5,7 @@ import { useHttp } from '../../hooks/http.hook'
 import { Loader } from '../../components/loader/Loader'
 import { useNavigate } from 'react-router-dom'
 
-export const CreateWeekPage = () => {
+export const UpdateWeekPage = ({weeks}) => {
     const { request, loading } = useHttp()
     const navigate = useNavigate()
     const auth = useContext(AuthContext)
@@ -15,13 +15,14 @@ export const CreateWeekPage = () => {
         setWeek({ ...week, [event.target.name]: event.target.value })
     }
 
+    const weeks1=weeks
 
     const addHandler = async () => {
 
         try {
             console.log('Data', week)
             console.log(groopLogin)
-            const data = await request(`/api/user/${groopLogin}/new`, 'POST', { ...week }, {    
+            const data = await request(`/api/user/${groopLogin}/update`, 'POST', { ...week }, {    
                 Authorization: `Bearer ${auth.token}`
             })
 
@@ -65,8 +66,16 @@ export const CreateWeekPage = () => {
                         <tr>
                             <td>1</td>
                             <td>
+                                <input  
+                                    name='mondayfirstLesson'
+                                    type="text"
+                                    value={week.mondayfirstLesson}
+                                    onChange={changeHandler}
+                                />
+                            </td>
+                            <td>
                                 <input
-                                    name='mon1'
+                                    name='tuesdayfirstLesson'
                                     type="text"
                                     value={week.firtsles}
                                     onChange={changeHandler}
@@ -74,7 +83,7 @@ export const CreateWeekPage = () => {
                             </td>
                             <td>
                                 <input
-                                    name='tues1'
+                                    name='wednesdayfirstLesson'
                                     type="text"
                                     value={week.firtsles}
                                     onChange={changeHandler}
@@ -82,7 +91,7 @@ export const CreateWeekPage = () => {
                             </td>
                             <td>
                                 <input
-                                    name='wed1'
+                                    name='thirthdayfirstLesson'
                                     type="text"
                                     value={week.firtsles}
                                     onChange={changeHandler}
@@ -90,7 +99,7 @@ export const CreateWeekPage = () => {
                             </td>
                             <td>
                                 <input
-                                    name='thir1'
+                                    name='fridayfirstLesson'
                                     type="text"
                                     value={week.firtsles}
                                     onChange={changeHandler}
@@ -98,7 +107,7 @@ export const CreateWeekPage = () => {
                             </td>
                             <td>
                                 <input
-                                    name='fri1'
+                                    name='saturdayfirstLesson'
                                     type="text"
                                     value={week.firtsles}
                                     onChange={changeHandler}
@@ -106,26 +115,18 @@ export const CreateWeekPage = () => {
                             </td>
                             <td>
                                 <input
-                                    name='sat1'
-                                    type="text"
-                                    value={week.firtsles}
-                                    onChange={changeHandler}
-                                />
-                            </td>
-                            <td>
-                                <input
-                                    name='sun1'
+                                    name='sundayfirstLesson'
                                     type="text"
                                     value={week.firtsles}
                                     onChange={changeHandler}
                                 />
                             </td>
                         </tr>
-                        <tr>
+                        {/* <tr>
                             <td>2</td>
                             <td>
                                 <input
-                                    name='mon2'
+                                    name='mondaysecondLesson'
                                     type="text"
                                     value={week.secondles}
                                     onChange={changeHandler}
@@ -184,7 +185,7 @@ export const CreateWeekPage = () => {
                             <td>3</td>
                             <td>
                                 <input
-                                    name='mon3'
+                                    name='mondaythirdLesson'
                                     type="text"
                                     value={week.thirdles}
                                     onChange={changeHandler}
@@ -243,7 +244,7 @@ export const CreateWeekPage = () => {
                             <td>4</td>
                             <td>
                                 <input
-                                    name='mon4'
+                                    name='mondayfourthLesson'
                                     type="text"
                                     value={week.fourles}
                                     onChange={changeHandler}
@@ -651,7 +652,7 @@ export const CreateWeekPage = () => {
                                     onChange={changeHandler}
                                 />
                             </td>
-                        </tr>
+                        </tr> */}
                     </tbody>
                 </table>
             </div>

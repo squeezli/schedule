@@ -4,7 +4,7 @@ import { AuthContext } from '../../context/AuthContext'
 import { useHttp } from '../../hooks/http.hook'
 import { Loader } from '../../components/loader/Loader'
 import { GroopCard } from '../../components/groopCard/GroopCard'
-import { ListWeek } from '../../components/week/Week'
+import { WeekList } from '../../components/weekList/WeekList'
 
 export const GroopPage = () => {
     const { token } = useContext(AuthContext)
@@ -13,15 +13,17 @@ export const GroopPage = () => {
     const [groop, setGroop] = useState(null)
     const [week, setWeek] = useState(null)
     const groopLogin = useParams().login
-    const getLink = useCallback(async () => {
 
+    console.log("123", groopLogin)
+
+    const getLink = useCallback(async () => {
        try {
            const fetched = await request(`/api/user/groop/${groopLogin}`, 'GET', null, {
                Authorization: `Bearer ${token}`
            })
-        //    console.log("fetched", fetched)
-           setGroop(fetched)
-           setWeek(fetched)
+           console.log("fetched", fetched)
+           setGroop(fetched.groop)
+           setWeek(fetched.week)
            
         } catch (e) { }
     }, [token, groopLogin, request])
@@ -38,7 +40,9 @@ export const GroopPage = () => {
         <>
             {!loading && groop && <GroopCard groop={groop}/>}
             
-            {!loading && groop && week && <ListWeek week={week} groop={groop}/>}
+            {!loading && groop && <WeekList week={week} groop={groop}/> }
+            
+            
 
         </>
     )

@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 
 export const GroopList = ({ groops }) => {
 
+    console.log(groops)
+
     if (!groops.length) {
         return <p className = "g" > Группы отсутствуют</p>
     
@@ -23,6 +25,7 @@ return (
         <tbody>
             {groops.map((groop, index) => {
                 return (
+                    
                     <tr key={groop.login}>
                         <td>{index + 1}</td>
                         <td>{groop.nameGroop}</td>
