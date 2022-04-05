@@ -4,10 +4,14 @@ import { AuthContext } from "../../context/AuthContext"
 import { useHttp } from "../../hooks/http.hook"
 import {Loader} from "../../components/loader/Loader"
 
+import { useNavigate } from 'react-router-dom'
+import '../css/Button.css'
+import '../css/Table.css'
+
 export const MainPage = () => {
 
     const [groops, setGroops] = useState([])
-
+    const navigate = useNavigate()
     const {loading, request} = useHttp()
     const {token} = useContext(AuthContext)
   
@@ -33,7 +37,7 @@ export const MainPage = () => {
         <div>
             <h1>Список групп</h1>
             <div className="links">
-            <a href="/create" className="link">Добавить группу</a>
+            <button  onClick={() => { navigate(`/create`) }}>Добавить группу</button>
             
             {!loading && <GroopList groops={groops}/>}
 

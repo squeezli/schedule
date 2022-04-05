@@ -4,17 +4,13 @@ const Week = require('../models/Week')
 exports.weekUpdate = async (req, res) => {
     try {
 
-        console.log("dasdasd", req.params)
-
         const groop = await Groop.findOne({ login: req.params.login })
 
-        console.log("dasdasd11", groop._id)
-
         const week = await Week.findOne({ idGroops: groop._id })
-        console.log("dasdasd1221", groop._id)
+
         Object.assign(week, req.body)
-        console.log("dasdasd1221",req.body)
-        week.save()
+        
+        week.update()
 
         console.log("dasdadasdasdsd", week)
 

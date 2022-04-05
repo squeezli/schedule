@@ -1,0 +1,15 @@
+.title>button{
+    display: inline-block;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.4s ease-in-out;
+    box-sizing: border-box;
+    border: 1px solid;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1.2px;
+    line-height: 1;
+    padding: 10px 15px;
+    border-radius: 15px;
+    color: #669;
+}

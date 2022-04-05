@@ -1,5 +1,4 @@
 const User = require('../models/User')
-const Groop = require('../models/Groop')
 const { validationResult } = require('express-validator')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
@@ -27,7 +26,7 @@ exports.createUser = async (req, res) => {
         }
 
         const hashPassword = await bcrypt.hash(password, 7)
-        const user = new User({ email, password: hashPassword })
+        const user = new User({ email, password: hashPassword})
 
         await user.save()
 
@@ -73,10 +72,11 @@ exports.loginUser = async (req, res) => {
             config.get('secretKey'),
             { expiresIn: '1h' }
         )
-
+        const role = user.role 
         return res.json({
+            role,
             token,
-            user:  user.id,
+            id: user.id,
                 
         })
 

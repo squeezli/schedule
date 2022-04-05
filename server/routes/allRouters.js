@@ -32,7 +32,9 @@ router.post('/user/create/groop',
 router.get('/user/groops',auth, require('../controllers/userLogick').listGroop)
 router.get('/user/groop/:login',auth, require('../controllers/userLogick').cardGroop)
 router.post('/user/:login/new',auth, require('../controllers/weekAdd').weekAdd)
-router.post('/user/:login/update',auth, require('../controllers/weekUpdate').weekUpdate)
+router.put('/user/:login/update',auth, require('../controllers/weekUpdate').weekUpdate)
+router.delete('/user/:login/week/delete',auth, require('../controllers/delete').weekDelete)
+router.delete('/user/:login/delete',auth, require('../controllers/delete').groopDelete)
 
 // Groop
 

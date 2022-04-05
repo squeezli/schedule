@@ -6,15 +6,17 @@ import { Loader } from '../../components/loader/Loader'
 import { GroopCard } from '../../components/groopCard/GroopCard'
 import { WeekList } from '../../components/weekList/WeekList'
 
-export const GroopPage = () => {
-    const { token } = useContext(AuthContext)
+
+
+export const ViewPage = () => {
+   const {token} = useContext(AuthContext)
     const { request, loading } = useHttp()
 
     const [groop, setGroop] = useState(null)
     const [week, setWeek] = useState(null)
-    const groopLogin = useParams().login
+    const groopLogin = 
 
-    console.log("123", groopLogin)
+    console.log("123", )
 
     const getLink = useCallback(async () => {
         try {

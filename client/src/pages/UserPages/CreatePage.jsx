@@ -26,7 +26,7 @@ export const CreatePage = () => {
             })
 
             console.log('Data', data)
-            navigate(`/groop/${data.groop._id}`)
+            navigate(`/groop/${data.groop.login}`)
         } catch (e) { }
     }
 
@@ -74,7 +74,7 @@ export const CreatePage = () => {
                         onChange={changeHandler}
                     /></label>
                 </div>
-                <button className="btn " onClick={registerHandler}>Добавить</button>
+                <button onClick={registerHandler}>Добавить</button>
             </div>
         </div>
 

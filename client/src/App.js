@@ -8,7 +8,7 @@ import { NavbarNoAuth } from './components/navbar/NavbarNoAuth'
 import { Loader } from "./components/loader/Loader"
 
 function App() {
-  const { token, login, logout, userId, ready } = useAuth()
+  const { token, login, logout, userId, ready} = useAuth()
   const isAuthenticated = !!token
   const routes = useRoutes(isAuthenticated)
 
@@ -25,6 +25,7 @@ function App() {
       <Router>
         {isAuthenticated && <Navbar />}
         {!isAuthenticated && <NavbarNoAuth />}
+
         <div className='container'>
           {routes}
         </div>

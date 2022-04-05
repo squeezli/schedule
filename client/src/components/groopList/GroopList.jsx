@@ -7,7 +7,13 @@ export const GroopList = ({ groops }) => {
     console.log(groops)
 
     if (!groops.length) {
-        return <p className = "g" > Группы отсутствуют</p>
+        return (<table>
+            <thead>
+                <tr>
+                    <th>Группы отсутствуют</th>
+                </tr>
+            </thead>
+        </table>)
     
 }
 

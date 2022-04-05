@@ -1,32 +1,49 @@
-import React, { useContext, useState } from 'react'
+import React, { useCallback, useState, useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext'
 import { useHttp } from '../../hooks/http.hook'
 import { Loader } from '../../components/loader/Loader'
 import { useNavigate } from 'react-router-dom'
 
-export const UpdateWeekPage = ({weeks}) => {
+export const UpdateWeekPage = () => {
+
+    const { token } = useContext(AuthContext)
     const { request, loading } = useHttp()
     const navigate = useNavigate()
     const auth = useContext(AuthContext)
     const groopLogin = useParams().login
     const [week, setWeek] = useState({});
+
+    const getLink = useCallback(async () => {
+        try {
+            const fetched = await request(`/api/user/groop/${groopLogin}`, 'GET', null, {
+                Authorization: `Bearer ${token}`
+            })
+            console.log("fetched", fetched)
+            setWeek(fetched.week)
+
+        } catch (e) { }
+    }, [token, groopLogin, request])
+
+    useEffect(() => {
+        getLink()
+    }, [getLink])
+
     const changeHandler = event => {
         setWeek({ ...week, [event.target.name]: event.target.value })
     }
 
-    const weeks1=weeks
 
     const addHandler = async () => {
 
         try {
             console.log('Data', week)
             console.log(groopLogin)
-            const data = await request(`/api/user/${groopLogin}/update`, 'POST', { ...week }, {    
+            const data = await request(`/api/user/${groopLogin}/update`, 'PUT', { ...week }, {
                 Authorization: `Bearer ${auth.token}`
             })
 
-            
+
             navigate(`/groop/${groopLogin}`)
         } catch (e) { }
 
@@ -66,7 +83,7 @@ export const UpdateWeekPage = ({weeks}) => {
                         <tr>
                             <td>1</td>
                             <td>
-                                <input  
+                                <input
                                     name='mondayfirstLesson'
                                     type="text"
                                     value={week.mondayfirstLesson}
@@ -77,7 +94,7 @@ export const UpdateWeekPage = ({weeks}) => {
                                 <input
                                     name='tuesdayfirstLesson'
                                     type="text"
-                                    value={week.firtsles}
+                                    value={week.tuesdayfirstLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
@@ -85,7 +102,7 @@ export const UpdateWeekPage = ({weeks}) => {
                                 <input
                                     name='wednesdayfirstLesson'
                                     type="text"
-                                    value={week.firtsles}
+                                    value={week.wednesdayfirstLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
@@ -93,7 +110,7 @@ export const UpdateWeekPage = ({weeks}) => {
                                 <input
                                     name='thirthdayfirstLesson'
                                     type="text"
-                                    value={week.firtsles}
+                                    value={week.thirthdayfirstLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
@@ -101,7 +118,7 @@ export const UpdateWeekPage = ({weeks}) => {
                                 <input
                                     name='fridayfirstLesson'
                                     type="text"
-                                    value={week.firtsles}
+                                    value={week.fridayfirstLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
@@ -109,7 +126,7 @@ export const UpdateWeekPage = ({weeks}) => {
                                 <input
                                     name='saturdayfirstLesson'
                                     type="text"
-                                    value={week.firtsles}
+                                    value={week.saturdayfirstLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
@@ -117,542 +134,562 @@ export const UpdateWeekPage = ({weeks}) => {
                                 <input
                                     name='sundayfirstLesson'
                                     type="text"
-                                    value={week.firtsles}
+                                    value={week.sundayfirstLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                         </tr>
-                        {/* <tr>
+
+
+                        <tr>
                             <td>2</td>
                             <td>
                                 <input
                                     name='mondaysecondLesson'
                                     type="text"
-                                    value={week.secondles}
+                                    value={week.mondaysecondLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='tues2'
+                                    name='tuesdaysecondLesson'
                                     type="text"
-                                    value={week.secondles}
+                                    value={week.tuesdaysecondLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='wed2'
+                                    name='wednesdaysecondLesson'
                                     type="text"
-                                    value={week.secondles}
+                                    value={week.wednesdaysecondLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='thir2'
+                                    name='thirthdaysecondLesson'
                                     type="text"
-                                    value={week.secondles}
+                                    value={week.thirthdaysecondLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='fri2'
+                                    name='fridaysecondLesson'
                                     type="text"
-                                    value={week.secondles}
+                                    value={week.fridaysecondLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='sat2'
+                                    name='saturdaysecondLesson'
                                     type="text"
-                                    value={week.secondles}
+                                    value={week.saturdaysecondLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='sun2'
+                                    name='sundaysecondLesson'
                                     type="text"
-                                    value={week.secondles}
+                                    value={week.sundaysecondLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                         </tr>
+
+
                         <tr>
                             <td>3</td>
                             <td>
                                 <input
                                     name='mondaythirdLesson'
                                     type="text"
-                                    value={week.thirdles}
+                                    value={week.mondaythirdLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='tues3'
+                                    name='tuesdaythirdLesson'
                                     type="text"
-                                    value={week.thirdles}
+                                    value={week.tuesdaythirdLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='wed3'
+                                    name='wednesdaythirdLesson'
                                     type="text"
-                                    value={week.thirdles}
+                                    value={week.wednesdaythirdLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='thir3'
+                                    name='thirthdaythirdLesson'
                                     type="text"
-                                    value={week.thirdles}
+                                    value={week.thirthdaythirdLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='fri3'
+                                    name='fridaythirdLesson'
                                     type="text"
-                                    value={week.thirdles}
+                                    value={week.fridaythirdLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='sat3'
+                                    name='saturdaythirdLesson'
                                     type="text"
-                                    value={week.thirdles}
+                                    value={week.saturdaythirdLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='sun3'
+                                    name='sundaythirdLesson'
                                     type="text"
-                                    value={week.thirdles}
+                                    value={week.sundaythirdLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                         </tr>
+
+
                         <tr>
                             <td>4</td>
                             <td>
                                 <input
                                     name='mondayfourthLesson'
                                     type="text"
-                                    value={week.fourles}
+                                    value={week.mondayfourthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='tues4'
+                                    name='tuesdayfourthLesson'
                                     type="text"
-                                    value={week.fourles}
+                                    value={week.tuesdayfourthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='wed4'
+                                    name='wednesdayfourthLesson'
                                     type="text"
-                                    value={week.fourles}
+                                    value={week.wednesdayfourthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='thir4'
+                                    name='thirthdayfourthLesson'
                                     type="text"
-                                    value={week.fourles}
+                                    value={week.thirthdayfourthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='fri4'
+                                    name='fridayfourthLesson'
                                     type="text"
-                                    value={week.ffourles}
+                                    value={week.fridayfourthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='sat4'
+                                    name='saturdayfourthLesson'
                                     type="text"
-                                    value={week.fourles}
+                                    value={week.saturdayfourthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='sun4'
+                                    name='sundayfourthLesson'
                                     type="text"
-                                    value={week.fourles}
+                                    value={week.sundayfourthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                         </tr>
+
+
                         <tr>
                             <td>5</td>
                             <td>
                                 <input
-                                    name='mon5'
+                                    name='mondayfifthLesson'
                                     type="text"
-                                    value={week.fifthles}
+                                    value={week.mondayfifthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='tues5'
+                                    name='tuesdayfifthLesson'
                                     type="text"
-                                    value={week.fifthles}
+                                    value={week.tuesdayfifthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='wed5'
+                                    name='wednesdayfifthLesson'
                                     type="text"
-                                    value={week.fifthles}
+                                    value={week.wednesdayfifthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='thir5'
+                                    name='thirthdayfifthLesson'
                                     type="text"
-                                    value={week.fifthles}
+                                    value={week.thirthdayfifthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='fri5'
+                                    name='fridayfifthLesson'
                                     type="text"
-                                    value={week.fifthles}
+                                    value={week.fridayfifthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='sat5'
+                                    name='saturdayfifthLesson'
                                     type="text"
-                                    value={week.fifthles}
+                                    value={week.saturdayfifthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='sun5'
+                                    name='sundayfifthLesson'
                                     type="text"
-                                    value={week.fifthles}
+                                    value={week.sundayfifthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                         </tr>
+
+
                         <tr>
                             <td>6</td>
                             <td>
                                 <input
-                                    name='mon6'
+                                    name='mondaysixthLesson'
                                     type="text"
-                                    value={week.sixthles}
+                                    value={week.mondaysixthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='tues6'
+                                    name='tuesdaysixthLesson'
                                     type="text"
-                                    value={week.sixthles}
+                                    value={week.tuesdaysixthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='wed6'
+                                    name='wednesdaysixthLesson'
                                     type="text"
-                                    value={week.sixthles}
+                                    value={week.wednesdaysixthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='thir6'
+                                    name='thirthdaysixthLesson'
                                     type="text"
-                                    value={week.sixthles}
+                                    value={week.thirthdaysixthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='fri6'
+                                    name='fridaysixthLesson'
                                     type="text"
-                                    value={week.sixthles}
+                                    value={week.fridaysixthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='sat6'
+                                    name='saturdaysixthLesson'
                                     type="text"
-                                    value={week.sixthles}
+                                    value={week.saturdaysixthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='sun6'
+                                    name='sundaysixthLesson'
                                     type="text"
-                                    value={week.sixthles}
+                                    value={week.sundaysixthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                         </tr>
+
+
                         <tr>
                             <td>7</td>
                             <td>
                                 <input
-                                    name='mon7'
+                                    name='mondayseventhLesson'
                                     type="text"
-                                    value={week.sevenhles}
+                                    value={week.mondayseventhLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='tues7'
+                                    name='tuesdayseventhLesson'
                                     type="text"
-                                    value={week.sevenles}
+                                    value={week.tuesdayseventhLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='wed7'
+                                    name='wednesdayseventhLesson'
                                     type="text"
-                                    value={week.sevenles}
+                                    value={week.wednesdayseventhLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='thir7'
+                                    name='thirthdayseventhLesson'
                                     type="text"
-                                    value={week.sevenles}
+                                    value={week.thirthdayseventhLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='fri7'
+                                    name='fridayseventhLesson'
                                     type="text"
-                                    value={week.sevenles}
+                                    value={week.fridayseventhLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='sat7'
+                                    name='saturdayseventhLesson'
                                     type="text"
-                                    value={week.sevenles}
+                                    value={week.saturdayseventhLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='sun7'
+                                    name='sundayseventhLesson'
                                     type="text"
-                                    value={week.sevenles}
+                                    value={week.sundayseventhLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                         </tr>
+
+
                         <tr>
                             <td>8</td>
                             <td>
                                 <input
-                                    name='mon8'
+                                    name='mondayeighthLesson'
                                     type="text"
-                                    value={week.eithles}
+                                    value={week.mondayeighthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='tues8'
+                                    name='tuesdayeighthLesson'
                                     type="text"
-                                    value={week.eithles}
+                                    value={week.tuesdayeighthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='wed8'
+                                    name='wednesdayeighthLesson'
                                     type="text"
-                                    value={week.eithles}
+                                    value={week.wednesdayeighthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='thir8'
+                                    name='thirthdayeighthLesson'
                                     type="text"
-                                    value={week.eithles}
+                                    value={week.thirthdayeighthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='fri8'
+                                    name='fridayeighthLesson'
                                     type="text"
-                                    value={week.eithles}
+                                    value={week.fridayeighthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='sat8'
+                                    name='saturdayeighthLesson'
                                     type="text"
-                                    value={week.eithles}
+                                    value={week.saturdayeighthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='sun8'
+                                    name='sundayeighthLesson'
                                     type="text"
-                                    value={week.eithles}
+                                    value={week.sundayeighthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                         </tr>
+
+
                         <tr>
                             <td>9</td>
                             <td>
                                 <input
-                                    name='mon9'
+                                    name='mondayninthLesson'
                                     type="text"
-                                    value={week.nineles}
+                                    value={week.mondayninthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='tues9'
+                                    name='tuesdayninthLesson'
                                     type="text"
-                                    value={week.nineles}
+                                    value={week.tuesdayninthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='wed9'
+                                    name='wednesdayninthLesson'
                                     type="text"
-                                    value={week.nineles}
+                                    value={week.wednesdayninthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='thir9'
+                                    name='thirthdayninthLesson'
                                     type="text"
-                                    value={week.nineles}
+                                    value={week.thirthdayninthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='fri9'
+                                    name='fridayninthLesson'
                                     type="text"
-                                    value={week.nineles}
+                                    value={week.fridayninthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='sat9'
+                                    name='saturdayninthLesson'
                                     type="text"
-                                    value={week.nineles}
+                                    value={week.saturdayninthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='sun9'
+                                    name='sundayninthLesson'
                                     type="text"
-                                    value={week.nineles}
+                                    value={week.sundayninthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                         </tr>
+
+
                         <tr>
                             <td>10</td>
                             <td>
                                 <input
-                                    name='mon10'
+                                    name='mondaytenthLesson'
                                     type="text"
-                                    value={week.tenles}
+                                    value={week.mondaytenthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='tues10'
+                                    name='tuesdaytenthLesson'
                                     type="text"
-                                    value={week.tenles}
+                                    value={week.tuesdaytenthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='wed10'
+                                    name='wednesdaytenthLesson'
                                     type="text"
-                                    value={week.tenles}
+                                    value={week.wednesdaytenthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='thir10'
+                                    name='thirthdaytenthLesson'
                                     type="text"
-                                    value={week.tenles}
+                                    value={week.thirthdaytenthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='fri10'
+                                    name='fridaytenthLesson'
                                     type="text"
-                                    value={week.tenles}
+                                    value={week.fridaytenthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='sat10'
+                                    name='saturdaytenthLesson'
                                     type="text"
-                                    value={week.tenles}
+                                    value={week.saturdaytenthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
                             <td>
                                 <input
-                                    name='sun10'
+                                    name='sundaytenthLesson'
                                     type="text"
-                                    value={week.tenles}
+                                    value={week.sundaytenthLesson}
                                     onChange={changeHandler}
                                 />
                             </td>
-                        </tr> */}
+                            
+                        </tr>
+
                     </tbody>
                 </table>
             </div>

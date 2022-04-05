@@ -17,23 +17,18 @@ exports.createGroop = async (req, res) => {
      
         const { login, nameGroop, passwordGroop } = req.body
 
-        const candidate = await Groop.findOne({ nameGroop })
+        const candidate = await Groop.findOne({login:login})
      
         if (candidate) {
-            return res.status(400).json({ message: `Группа с таким именем ${nameGroop} уже зарегистрирован` })
+            return res.status(400).json({ message: `Группа с таким login ${login} уже зарегистрирована` })
         }
 
-        
         const hashPassword = await bcrypt.hash(passwordGroop, 7)
-        const groop = new Groop({ login, nameGroop, passwordGroop: hashPassword, user: req.user.userID })
+        const groop = new Groop({ login, nameGroop:namegroop, passwordGroop: hashPassword, user: req.user.userID })
       
         await groop.save()
-        
-       
 
         return res.status(201).json({groop, message: 'Группа добавлена'  })
-
-       
 
     } catch (error) {
         res.status(500).json({ message: 'Что то пошло не так, попробуйте снова' })
@@ -54,7 +49,7 @@ exports.listGroop = async (req, res) => {
 }
 exports.cardGroop = async (req, res) => {
     try {
-        console.log("req0", req.params)
+        console.log("req0", req.user)
         const groop = await Groop.findOne({login:req.params.login})
         const week = await Week.findOne({idGroops:groop._id})
         console.log('gr',week)
