@@ -12,14 +12,12 @@ router.post('/user/create',
     ],
     require('../controllers/userAuth').createUser)
 
-
 router.post('/user/login',
     [
         check('email', 'Введите корректный email').normalizeEmail().isEmail(),
         check('password', 'Введите пароль').exists()
     ],
     require('../controllers/userAuth').loginUser)
-
 
 router.post('/user/create/groop',
     [

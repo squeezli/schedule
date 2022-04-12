@@ -26,7 +26,7 @@ exports.createUser = async (req, res) => {
         }
 
         const hashPassword = await bcrypt.hash(password, 7)
-        const user = new User({ email, password: hashPassword})
+        const user = new User({ email, password: hashPassword, rules:'admin'})
 
         await user.save()
 
@@ -41,7 +41,6 @@ exports.createUser = async (req, res) => {
 
 exports.loginUser = async (req, res) => {
     try {
-
         const errors = validationResult(req)
 
         if (!errors.isEmpty()) {
@@ -52,7 +51,6 @@ exports.loginUser = async (req, res) => {
         }
 
         const { email, password } = req.body
-
         const user = await User.findOne({ email })
 
         if (!user) {
@@ -60,8 +58,6 @@ exports.loginUser = async (req, res) => {
         }
 
         const isPassValid = await bcrypt.compare(password, user.password)
-
-
 
         if (!isPassValid) {
             return res.status(400).json({ message: 'Неверный email и/или пароль' })
@@ -72,12 +68,11 @@ exports.loginUser = async (req, res) => {
             config.get('secretKey'),
             { expiresIn: '1h' }
         )
-        const role = user.role 
+        
         return res.json({
-            role,
             token,
-            id: user.id,
-                
+            id:user.id,
+            rules:user.rules
         })
 
     } catch (error) {

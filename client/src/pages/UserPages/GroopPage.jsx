@@ -5,16 +5,21 @@ import { useHttp } from '../../hooks/http.hook'
 import { Loader } from '../../components/loader/Loader'
 import { GroopCard } from '../../components/groopCard/GroopCard'
 import { WeekList } from '../../components/weekList/WeekList'
+import { useMessage } from '../../hooks/message.hook'
+
 
 export const GroopPage = () => {
     const { token } = useContext(AuthContext)
-    const { request, loading } = useHttp()
-
+    const { request,error, clearError, loading } = useHttp()
     const [groop, setGroop] = useState(null)
     const [week, setWeek] = useState(null)
     const groopLogin = useParams().login
-
-    console.log("123", groopLogin)
+    const message = useMessage()
+    
+    useEffect(() => {
+        message(error)
+        clearError()
+    }, [error, message, clearError]);
 
     const getLink = useCallback(async () => {
         try {

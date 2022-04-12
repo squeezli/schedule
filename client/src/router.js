@@ -6,13 +6,15 @@ import { CreateWeekPage } from "./pages/UserPages/CreateWeekPage"
 import { UpdateWeekPage } from "./pages/UserPages/UpdateWeekPage.jsx"
 import { GroopPage } from "./pages/UserPages/GroopPage"
 import { MainPage } from "./pages/UserPages/MainPage"
-import {GroopLoginPage} from './pages/GroopPages/GroopLoginPage'
-import {ViewPage} from './pages/GroopPages/ViewPage'
+import { GroopLoginPage } from './pages/GroopPages/GroopLoginPage'
+import { ViewPage } from './pages/GroopPages/ViewPage'
 
 
 
-export const useRoutes = (isAuthenticated) => {
-    if (isAuthenticated) {
+export const useRoutes = (isAuthenticated, rules) => {
+
+    console.log("sdasdas2", rules)
+    if (isAuthenticated && rules === 'admin') {
         return (
 
             <Routes>
@@ -21,7 +23,7 @@ export const useRoutes = (isAuthenticated) => {
                 <Route path="groop/:login" element={<GroopPage />} />
                 <Route path="groop/:login/new" element={<CreateWeekPage />} />
                 <Route path="groop/:login/update" element={<UpdateWeekPage />} />
-                
+
                 <Route path="/*" element={<Navigate replace to="/main" />} />
             </Routes>
 
@@ -31,9 +33,8 @@ export const useRoutes = (isAuthenticated) => {
         return (
 
             <Routes>
-                <Route path="main/" element={<ViewPage />} />
-                
-                <Route path="/*" element={<Navigate replace to="/main" />} />
+                <Route path="view/" element={<ViewPage />} />
+                <Route path="/*" element={<Navigate replace to="/view" />} />
             </Routes>
 
         )

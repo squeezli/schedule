@@ -6,13 +6,13 @@ import { Loader } from '../../components/loader/Loader'
 import { useNavigate } from 'react-router-dom'
 
 export const UpdateWeekPage = () => {
-
     const { token } = useContext(AuthContext)
-    const { request, loading } = useHttp()
     const navigate = useNavigate()
     const auth = useContext(AuthContext)
     const groopLogin = useParams().login
     const [week, setWeek] = useState({});
+    const { request, loading } = useHttp()
+
 
     const getLink = useCallback(async () => {
         try {
@@ -42,7 +42,7 @@ export const UpdateWeekPage = () => {
             const data = await request(`/api/user/${groopLogin}/update`, 'PUT', { ...week }, {
                 Authorization: `Bearer ${auth.token}`
             })
-
+            console.log(data)
 
             navigate(`/groop/${groopLogin}`)
         } catch (e) { }
@@ -687,7 +687,7 @@ export const UpdateWeekPage = () => {
                                     onChange={changeHandler}
                                 />
                             </td>
-                            
+
                         </tr>
 
                     </tbody>

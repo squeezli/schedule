@@ -1,15 +1,13 @@
-import React, { useContext } from 'react'
+import React, { useContext} from 'react'
 import { AuthContext } from '../../context/AuthContext'
 import { useHttp } from '../../hooks/http.hook'
-import { useNavigate } from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom'  
+import '../../pages/css/style.css'
 export const WeekList = ({ week, groop }) => {
 
-    const { request } = useHttp()
     const navigate = useNavigate()
     const auth = useContext(AuthContext)
-
-    console.log("2123", week)
+    const { request} = useHttp()
 
     const deleteHandler = async () => {
 
@@ -29,9 +27,15 @@ export const WeekList = ({ week, groop }) => {
     if (!week) {
         return (
             <>
-                <p className="g">Расписание отсутствует</p>
-                <button  onClick={() => { navigate(`/groop/${groop.login}/new`) }}>Добавить расписание</button>
-                
+            <table>
+                <thead>
+                    <tr>
+                        <th style={{textAlign:'center'}} >Расписание отсутствует</th>
+                    </tr>
+                </thead>
+            </table>
+                <button className='g' onClick={() => { navigate(`/groop/${groop.login}/new`) }}>Добавить расписание</button>
+
             </>
         )
     }

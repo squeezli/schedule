@@ -12,4 +12,8 @@
     padding: 10px 15px;
     border-radius: 15px;
     color: #669;
+    margin: 20px;
+}
+.title{
+    display: flex;
 }

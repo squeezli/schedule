@@ -1,16 +1,24 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext'
 import { useHttp } from '../../hooks/http.hook'
 import { Loader } from '../../components/loader/Loader'
 import { useNavigate } from 'react-router-dom'
-
+import { useMessage } from '../../hooks/message.hook'
 export const CreateWeekPage = () => {
-    const { request, loading } = useHttp()
+    const { request, error, clearError, loading } = useHttp()
     const navigate = useNavigate()
     const auth = useContext(AuthContext)
     const groopLogin = useParams().login
     const [week, setWeek] = useState({});
+    const message = useMessage()
+
+    useEffect(() => {
+        console.log('error', error)
+        message(error)
+        clearError()
+    }, [error, message, clearError])
+
 
     const changeHandler = event => {
         setWeek({ ...week, [event.target.name]: event.target.value })
@@ -26,6 +34,7 @@ export const CreateWeekPage = () => {
                 Authorization: `Bearer ${auth.token}`
             })
 
+            console.log(data)
 
             navigate(`/groop/${groopLogin}`)
         } catch (e) { }
@@ -41,7 +50,7 @@ export const CreateWeekPage = () => {
 
     if (loading) {
         return <Loader />
-        
+
     }
 
     return (
@@ -69,7 +78,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='mondayfirstLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.mondayfirstLesson}
                                     onChange={changeHandler}
                                 />
@@ -77,7 +86,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='tuesdayfirstLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.tuesdayfirstLesson}
                                     onChange={changeHandler}
                                 />
@@ -85,7 +94,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='wednesdayfirstLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.wednesdayfirstLesson}
                                     onChange={changeHandler}
                                 />
@@ -93,7 +102,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='thirthdayfirstLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.thirthdayfirstLesson}
                                     onChange={changeHandler}
                                 />
@@ -101,7 +110,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='fridayfirstLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.fridayfirstLesson}
                                     onChange={changeHandler}
                                 />
@@ -109,16 +118,16 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='saturdayfirstLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.saturdayfirstLesson}
                                     onChange={changeHandler}
                                 />
-                                
+
                             </td>
                             <td>
                                 <input
                                     name='sundayfirstLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.sundayfirstLesson}
                                     onChange={changeHandler}
                                 />
@@ -131,7 +140,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='mondaysecondLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.mondaysecondLesson}
                                     onChange={changeHandler}
                                 />
@@ -139,7 +148,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='tuesdaysecondLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.tuesdaysecondLesson}
                                     onChange={changeHandler}
                                 />
@@ -147,7 +156,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='wednesdaysecondLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.wednesdaysecondLesson}
                                     onChange={changeHandler}
                                 />
@@ -155,7 +164,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='thirthdaysecondLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.thirthdaysecondLesson}
                                     onChange={changeHandler}
                                 />
@@ -163,7 +172,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='fridaysecondLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.fridaysecondLesson}
                                     onChange={changeHandler}
                                 />
@@ -171,7 +180,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='saturdaysecondLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.saturdaysecondLesson}
                                     onChange={changeHandler}
                                 />
@@ -179,7 +188,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='sundaysecondLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.sundaysecondLesson}
                                     onChange={changeHandler}
                                 />
@@ -191,7 +200,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='mondaythirdLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.mondaythirdLesson}
                                     onChange={changeHandler}
                                 />
@@ -199,7 +208,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='tuesdaythirdLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.tuesdaythirdLesson}
                                     onChange={changeHandler}
                                 />
@@ -207,7 +216,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='wednesdaythirdLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.wednesdaythirdLesson}
                                     onChange={changeHandler}
                                 />
@@ -215,7 +224,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='thirthdaythirdLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.thirthdaythirdLesson}
                                     onChange={changeHandler}
                                 />
@@ -223,7 +232,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='fridaythirdLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.fridaythirdLesson}
                                     onChange={changeHandler}
                                 />
@@ -231,7 +240,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='saturdaythirdLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.saturdaythirdLesson}
                                     onChange={changeHandler}
                                 />
@@ -239,7 +248,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='sundaythirdLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.sundaythirdLesson}
                                     onChange={changeHandler}
                                 />
@@ -251,7 +260,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='mondayfourthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.mondayfourthLesson}
                                     onChange={changeHandler}
                                 />
@@ -259,7 +268,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='tuesdayfourthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.tuesdayfourthLesson}
                                     onChange={changeHandler}
                                 />
@@ -267,7 +276,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='wednesdayfourthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.wednesdayfourthLesson}
                                     onChange={changeHandler}
                                 />
@@ -275,7 +284,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='thirthdayfourthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.thirthdayfourthLesson}
                                     onChange={changeHandler}
                                 />
@@ -283,7 +292,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='fridayfourthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.fridayfourthLesson}
                                     onChange={changeHandler}
                                 />
@@ -291,7 +300,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='saturdayfourthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.saturdayfourthLesson}
                                     onChange={changeHandler}
                                 />
@@ -299,7 +308,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='sundayfourthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.sundayfourthLesson}
                                     onChange={changeHandler}
                                 />
@@ -312,7 +321,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='mondayfifthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.mondayfifthLesson}
                                     onChange={changeHandler}
                                 />
@@ -320,7 +329,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='tuesdayfifthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.tuesdayfifthLesson}
                                     onChange={changeHandler}
                                 />
@@ -328,7 +337,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='wednesdayfifthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.wednesdayfifthLesson}
                                     onChange={changeHandler}
                                 />
@@ -336,7 +345,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='thirthdayfifthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.thirthdayfifthLesson}
                                     onChange={changeHandler}
                                 />
@@ -344,7 +353,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='fridayfifthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.fridayfifthLesson}
                                     onChange={changeHandler}
                                 />
@@ -352,7 +361,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='saturdayfifthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.saturdayfifthLesson}
                                     onChange={changeHandler}
                                 />
@@ -360,7 +369,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='sundayfifthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.sundayfifthLesson}
                                     onChange={changeHandler}
                                 />
@@ -373,7 +382,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='mondaysixthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.mondaysixthLesson}
                                     onChange={changeHandler}
                                 />
@@ -381,7 +390,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='tuesdaysixthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.tuesdaysixthLesson}
                                     onChange={changeHandler}
                                 />
@@ -389,7 +398,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='wednesdaysixthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.wednesdaysixthLesson}
                                     onChange={changeHandler}
                                 />
@@ -397,7 +406,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='thirthdaysixthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.thirthdaysixthLesson}
                                     onChange={changeHandler}
                                 />
@@ -405,7 +414,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='fridaysixthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.fridaysixthLesson}
                                     onChange={changeHandler}
                                 />
@@ -413,7 +422,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='saturdaysixthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.saturdaysixthLesson}
                                     onChange={changeHandler}
                                 />
@@ -421,7 +430,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='sundaysixthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.sundaysixthLesson}
                                     onChange={changeHandler}
                                 />
@@ -434,7 +443,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='mondayseventhLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.mondayseventhLesson}
                                     onChange={changeHandler}
                                 />
@@ -442,7 +451,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='tuesdayseventhLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.tuesdayseventhLesson}
                                     onChange={changeHandler}
                                 />
@@ -450,7 +459,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='wednesdayseventhLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.wednesdayseventhLesson}
                                     onChange={changeHandler}
                                 />
@@ -458,7 +467,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='thirthdayseventhLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.thirthdayseventhLesson}
                                     onChange={changeHandler}
                                 />
@@ -466,7 +475,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='fridayseventhLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.fridayseventhLesson}
                                     onChange={changeHandler}
                                 />
@@ -474,7 +483,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='saturdayseventhLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.saturdayseventhLesson}
                                     onChange={changeHandler}
                                 />
@@ -482,7 +491,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='sundayseventhLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.sundayseventhLesson}
                                     onChange={changeHandler}
                                 />
@@ -495,7 +504,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='mondayeighthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.mondayeighthLesson}
                                     onChange={changeHandler}
                                 />
@@ -503,7 +512,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='tuesdayeighthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.tuesdayeighthLesson}
                                     onChange={changeHandler}
                                 />
@@ -511,7 +520,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='wednesdayeighthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.wednesdayeighthLesson}
                                     onChange={changeHandler}
                                 />
@@ -519,7 +528,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='thirthdayeighthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.thirthdayeighthLesson}
                                     onChange={changeHandler}
                                 />
@@ -527,7 +536,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='fridayeighthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.fridayeighthLesson}
                                     onChange={changeHandler}
                                 />
@@ -535,7 +544,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='saturdayeighthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.saturdayeighthLesson}
                                     onChange={changeHandler}
                                 />
@@ -543,7 +552,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='sundayeighthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.sundayeighthLesson}
                                     onChange={changeHandler}
                                 />
@@ -556,7 +565,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='mondayninthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.mondayninthLesson}
                                     onChange={changeHandler}
                                 />
@@ -564,7 +573,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='tuesdayninthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.tuesdayninthLesson}
                                     onChange={changeHandler}
                                 />
@@ -572,7 +581,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='wednesdayninthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.wednesdayninthLesson}
                                     onChange={changeHandler}
                                 />
@@ -580,7 +589,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='thirthdayninthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.thirthdayninthLesson}
                                     onChange={changeHandler}
                                 />
@@ -588,7 +597,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='fridayninthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.fridayninthLesson}
                                     onChange={changeHandler}
                                 />
@@ -596,7 +605,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='saturdayninthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.saturdayninthLesson}
                                     onChange={changeHandler}
                                 />
@@ -604,7 +613,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='sundayninthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.sundayninthLesson}
                                     onChange={changeHandler}
                                 />
@@ -617,7 +626,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='mondaytenthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.mondaytenthLesson}
                                     onChange={changeHandler}
                                 />
@@ -625,7 +634,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='tuesdaytenthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.tuesdaytenthLesson}
                                     onChange={changeHandler}
                                 />
@@ -633,7 +642,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='wednesdaytenthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.wednesdaytenthLesson}
                                     onChange={changeHandler}
                                 />
@@ -641,7 +650,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='thirthdaytenthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.thirthdaytenthLesson}
                                     onChange={changeHandler}
                                 />
@@ -649,7 +658,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='fridaytenthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.fridaytenthLesson}
                                     onChange={changeHandler}
                                 />
@@ -657,7 +666,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='saturdaytenthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.saturdaytenthLesson}
                                     onChange={changeHandler}
                                 />
@@ -665,7 +674,7 @@ export const CreateWeekPage = () => {
                             <td>
                                 <input
                                     name='sundaytenthLesson'
-                                    type="text"
+                                    type='text'
                                     value={week.sundaytenthLesson}
                                     onChange={changeHandler}
                                 />
@@ -678,8 +687,8 @@ export const CreateWeekPage = () => {
                 </table>
             </div>
 
-            <button className="btn " onClick={falseHandler}>Отмена</button>
-            <button className="btn " onClick={addHandler}>Сохранить расписание</button>
+            <button className='btn ' onClick={falseHandler}>Отмена</button>
+            <button className='btn ' onClick={addHandler}>Сохранить расписание</button>
 
         </>
 
