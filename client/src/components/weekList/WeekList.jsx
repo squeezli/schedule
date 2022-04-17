@@ -41,7 +41,8 @@ export const WeekList = ({ week, groop }) => {
     }
     return (
         <>
-            <table>
+        <div className="ggg" style={{overflowX:'scroll'}}>
+            <table >
                 <thead>
                     <tr>
                         <th >№</th>
@@ -159,10 +160,13 @@ export const WeekList = ({ week, groop }) => {
                     </tr>
                 </tbody>
 
-            </table>
-            <button className="btn " onClick={deleteHandler}>Удалить расписание</button>
-            <button className="btn " onClick={() => { navigate(`/groop/${groop.login}/update`) }}>Изменить расписание</button>
+            </table></div>
+            <div className="hhh" style={{margin:'50px', textAlign:'center'}} >
+               <button className="btn btn2" onClick={deleteHandler}>Удалить расписание</button>
+            <button className="btn btn1" onClick={() => { navigate(`/groop/${groop.login}/update`) }}>Изменить расписание</button>
 
+            </div>
+            
         </>
     )
 

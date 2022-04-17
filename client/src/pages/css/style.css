@@ -3,3 +3,39 @@
     text-align: center;
     margin: 15px 43%;
 }
+
+/* Inline таблица стилей #1 | http://localhost:3000/create */
+
+.container {
+    padding: 0 15px;
+  }
+  
+  /* Элемент | http://localhost:3000/create */
+  
+  .container > .div1:nth-child(1) {
+    width: 250px;
+    padding: 20px;
+    background-color: aliceblue;
+    border: black 1px solid;
+    margin: 50px auto;
+    text-align: center;
+  }
+  
+  /* Элемент | http://localhost:3000/create */
+  
+  .groop > button:nth-child(5) {
+    text-align: center;
+  }
+  
+  /* Элемент | http://localhost:3000/create */
+  
+  .main__title {
+    padding-bottom: 41px;
+  }
+  
+  /* Элемент | http://localhost:3000/create */
+  
+  div.input__fields:nth-child(2) {
+    padding: 18px 0 0 0;
+  }
+  

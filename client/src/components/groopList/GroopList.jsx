@@ -39,10 +39,10 @@ export const GroopList = ({ groops }) => {
                     return (
 
                         <tr key={groop.login}>
-                            <td>{index + 1}</td>
-                            <td>{groop.nameGroop}</td>
-                            <td>{groop.login}</td>
-                            <td>
+                            <td className="td1">{index + 1}</td>
+                            <td className="td1">{groop.nameGroop}</td>
+                            <td className="td1">{groop.login}</td>
+                            <td className="td1">
                                 <Link to={`/groop/${groop.login} `}>Открыть</Link>
                             </td>
                         </tr>

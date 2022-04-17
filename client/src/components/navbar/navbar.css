@@ -30,10 +30,14 @@ color: #000000 !important;
 }
 .menu__item{
     padding-top: 10px;
-    padding-left: 30px;
     text-decoration: none;
     list-style: none;
 }
 .menu__item>a{
     color: #000;
-    text-decoration: none;}
+    text-decoration: none;
+    padding: 32px 13px;
+}
+.menu__item>a:hover {
+        background-color:rgba(235, 205, 160, 0.774) ;
+        }

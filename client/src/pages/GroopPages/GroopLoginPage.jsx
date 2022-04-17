@@ -32,12 +32,11 @@ export const GroopLoginPage = () => {
     }
 
     return (
-        <div className='container'>
             <div className='auth__block'>
                 <span className='auth__title'>Авторизация</span>
 
                 <div className='input__field'>
-                    <label htmlFor='email'>login: </label>
+                    <label htmlFor='email'></label>
                     <input
                         type='text'
                         placeholder='Введите login'
@@ -49,21 +48,20 @@ export const GroopLoginPage = () => {
                 </div>
 
                 <div className='input__field'>
-                    <label htmlFor='password'>Пароль: <input
+                    <label htmlFor='password'></label>
+                    <input
                         type='password'
                         placeholder='Введите пароль'
                         id='password'
                         name='password'
                         value={form.password}
                         onChange={changeHandler}
-                    /></label>
-
+                    />
                 </div>
                 <button className='btn ' onClick={loginHandler}>Войти</button>
 
 
             </div>
-        </div>
     )
 
 }

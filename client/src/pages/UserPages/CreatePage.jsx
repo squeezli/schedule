@@ -41,7 +41,7 @@ export const CreatePage = () => {
 
     return (
 
-        <div>
+        <div className='div1'>
             <div className='groop' style={{ margin: '25px 0' }}>
 
                 <span className='main__title' style={{fontSize: '2em',

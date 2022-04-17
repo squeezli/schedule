@@ -42,13 +42,12 @@ export const AuthPage = () => {
     }
 
     return (
-        <div className='container'>
 
             <div className='auth__block'>
                 <span className='auth__title'>Авторизация</span>
 
                 <div className='input__field'>
-                    <label htmlFor='email'>Email: </label>
+                    <label htmlFor='email'></label>
                     <input
                         type='text'
                         placeholder='Введите email'
@@ -60,7 +59,7 @@ export const AuthPage = () => {
                 </div>
 
                 <div className='input__field'>
-                    <label htmlFor='password'>Пароль: </label><input
+                    <label htmlFor='password'></label><input
                         type='password'
                         placeholder='Введите пароль'
                         id='password'
@@ -70,13 +69,13 @@ export const AuthPage = () => {
                     />
 
                 </div>
-                <button className='btn ' onClick={loginHandler}>Войти</button>
-                <button className='btn ' onClick={registerHandler}>Регистрация</button>
+                <button className='btn btn2' onClick={loginHandler}>Войти</button>
+                <button className='btn btn1'  onClick={registerHandler}>Регистрация</button>
             </div>
 
 
 
-        </div>
+      
 
 
 

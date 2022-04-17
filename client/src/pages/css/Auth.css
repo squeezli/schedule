@@ -1,61 +1,46 @@
 .auth__block{
-    position: absolute;
-    width: 1000px;
-    height: 495px;
-    left: 460px;
-    top: 292px;
-    
-    background: #FFB361;
-    border-radius: 26px;
+    width: 350px;
+    background-color: rgb(253, 180, 71);
+    height: 300px;
+    margin: 150px auto;
+    text-align: center;
+    box-shadow: 2px black;
+    border-radius:10px ;
 }
 .container{
     max-width: 1200px;
     margin: 0 auto;
 }
 .auth__title{
+  background-color: #94AA6A;
   
-width: 222px;
-height: 42px;
-left: 849px;
-top: 369px;
+  padding:20px 131.5px ;
 
-font-family: 'Roboto';
-font-style: normal;
-font-weight: 400;
-font-size: 36px;
-line-height: 42px;
+  border-radius: 10px 10px 0 0 ;
 
-color: #222020;
+}
 
+.input__field{
+    margin: 50px 0;
 }
 
 .input__field>label{
 
-    margin-right: 10px;
+
  
 }
 .input__field>input{
-
-     width: 516px;
-     height: 43px;
-     margin-left:50px ;
-     
-     background: rgba(240, 234, 234, 0.48);
-     
- 
+ height: 35px;
+    width: 325px;
  }
 .input__field>label>input>{
-
-    width: 516px;
-    height: 43px;
-    margin-left:50px ;
-    
-    background: rgba(240, 234, 234, 0.48);
-    
 
 }
 a{
     text-decoration: none;
 }
-
+.hhh{
+    margin:'50px';
+    text-align:'center'
+}
 

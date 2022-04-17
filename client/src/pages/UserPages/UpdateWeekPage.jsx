@@ -78,7 +78,7 @@ export const UpdateWeekPage = () => {
                             <th>Воскресение</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className='tb1'>
 
                         <tr>
                             <td>1</td>
@@ -693,10 +693,12 @@ export const UpdateWeekPage = () => {
                     </tbody>
                 </table>
             </div>
+        <div className="hhh"style={{margin:'50px', textAlign:'center'}}>
+            <button className="btn btn2" onClick={falseHandler}>Отмена</button>
+            <button className="btn btn1" onClick={addHandler}>Сохранить расписание</button>
 
-            <button className="btn " onClick={falseHandler}>Отмена</button>
-            <button className="btn " onClick={addHandler}>Сохранить расписание</button>
-
+        </div>
+            
         </>
 
     )
