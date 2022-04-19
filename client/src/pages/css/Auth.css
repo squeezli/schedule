@@ -1,19 +1,21 @@
 .auth__block{
     width: 350px;
-    background-color: rgb(253, 180, 71);
-    height: 300px;
+    height: 350px;
     margin: 150px auto;
     text-align: center;
     box-shadow: 2px black;
     border-radius:10px ;
+    border: 1px solid black;
 }
 .container{
     max-width: 1200px;
     margin: 0 auto;
 }
 .auth__title{
-  background-color: #94AA6A;
+  background-color: rgb(245, 155, 21);
   
+    display: block;
+
   padding:20px 131.5px ;
 
   border-radius: 10px 10px 0 0 ;
